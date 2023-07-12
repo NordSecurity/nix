@@ -17,7 +17,7 @@ cfg_if! {
         target_os = "openbsd",
         target_os = "netbsd",
         target_os = "macos",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "android",
         target_os = "dragonfly",
         all(target_os = "linux", not(target_env = "gnu"))
@@ -48,7 +48,7 @@ libc_enum! {
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "macos",
-            target_os = "ios",
+            target_os = "ios", target_os = "tvos",
             target_os = "android",
             target_os = "dragonfly",
             all(target_os = "linux", not(any(target_env = "gnu", target_env = "uclibc")))

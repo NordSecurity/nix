@@ -41,7 +41,7 @@ libc_bitflags!(
         /// [`netdevice(7)`](https://man7.org/linux/man-pages/man7/netdevice.7.html))
         #[cfg(any(target_os = "android",
                   target_os = "fuchsia",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos",
                   target_os = "netbsd",
@@ -60,7 +60,7 @@ libc_bitflags!(
                   target_os = "freebsd",
                   target_os = "fuchsia",
                   target_os = "illumos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos",
                   target_os = "netbsd",
@@ -87,7 +87,7 @@ libc_bitflags!(
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd",
-                  target_os = "ios"))]
+                  target_os = "ios", target_os = "tvos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         IFF_OACTIVE;
         /// Protocol code on board.
@@ -116,7 +116,7 @@ libc_bitflags!(
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd",
-                  target_os = "ios"))]
+                  target_os = "ios", target_os = "tvos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         IFF_LINK0;
         /// Multicast using broadcast.
@@ -134,7 +134,7 @@ libc_bitflags!(
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd",
-                  target_os = "ios"))]
+                  target_os = "ios", target_os = "tvos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         IFF_LINK1;
         /// Non-unique address.
@@ -152,14 +152,14 @@ libc_bitflags!(
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd",
-                  target_os = "ios"))]
+                  target_os = "ios", target_os = "tvos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         IFF_LINK2;
         /// Use alternate physical connection.
         #[cfg(any(target_os = "dragonfly",
                   target_os = "freebsd",
                   target_os = "macos",
-                  target_os = "ios"))]
+                  target_os = "ios", target_os = "tvos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         IFF_ALTPHYS;
         /// DHCP controls interface.
@@ -329,7 +329,7 @@ libc_bitflags!(
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "fuchsia",
-    target_os = "ios",
+    target_os = "ios", target_os = "tvos",
     target_os = "linux",
     target_os = "macos",
     target_os = "netbsd",
@@ -460,7 +460,7 @@ mod if_nameindex {
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "fuchsia",
-    target_os = "ios",
+    target_os = "ios", target_os = "tvos",
     target_os = "linux",
     target_os = "macos",
     target_os = "netbsd",

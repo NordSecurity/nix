@@ -22,6 +22,7 @@ use nix::fcntl;
 #[cfg(any(
     target_os = "linux",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "freebsd",
     target_os = "netbsd"
@@ -236,6 +237,7 @@ fn test_utimes() {
 #[cfg(any(
     target_os = "linux",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "freebsd",
     target_os = "netbsd"
@@ -366,6 +368,7 @@ fn test_mkdirat_fail() {
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "haiku",
     target_os = "redox"
@@ -388,6 +391,7 @@ fn test_mknod() {
     target_os = "freebsd",
     target_os = "illumos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "haiku",
     target_os = "redox"

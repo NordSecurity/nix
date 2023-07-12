@@ -32,7 +32,8 @@ pub fn test_local_peercred_seqpacket() {
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "macos",
-    target_os = "ios"
+    target_os = "ios",
+    target_os = "tvos"
 ))]
 #[test]
 pub fn test_local_peercred_stream() {
@@ -314,7 +315,7 @@ fn test_ttl_opts() {
 }
 
 #[test]
-#[cfg(any(target_os = "ios", target_os = "macos"))]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
 fn test_dontfrag_opts() {
     let fd4 = socket(
         AddressFamily::Inet,
@@ -347,6 +348,7 @@ fn test_dontfrag_opts() {
 #[cfg(any(
     target_os = "android",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "linux",
     target_os = "macos",
 ))]

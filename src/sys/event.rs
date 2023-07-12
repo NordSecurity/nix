@@ -22,6 +22,7 @@ pub struct KEvent {
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "openbsd"
 ))]
@@ -46,12 +47,12 @@ libc_enum! {
         EVFILT_EXCEPT,
         #[cfg(any(target_os = "dragonfly",
                   target_os = "freebsd",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "macos"))]
         EVFILT_FS,
         #[cfg(target_os = "freebsd")]
         EVFILT_LIO,
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         EVFILT_MACHPORT,
         EVFILT_PROC,
         /// Returns events associated with the process referenced by a given
@@ -68,10 +69,10 @@ libc_enum! {
         EVFILT_TIMER,
         #[cfg(any(target_os = "dragonfly",
                   target_os = "freebsd",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "macos"))]
         EVFILT_USER,
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         EVFILT_VM,
         EVFILT_VNODE,
         EVFILT_WRITE,
@@ -82,7 +83,7 @@ libc_enum! {
 #[cfg(any(
     target_os = "dragonfly",
     target_os = "freebsd",
-    target_os = "ios",
+    target_os = "ios", target_os = "tvos",
     target_os = "macos",
     target_os = "openbsd"
 ))]
@@ -96,7 +97,7 @@ libc_bitflags! {
         EV_DELETE;
         EV_DISABLE;
         #[cfg(any(target_os = "dragonfly", target_os = "freebsd",
-                  target_os = "ios", target_os = "macos",
+                  target_os = "ios", target_os = "tvos", target_os = "macos",
                   target_os = "netbsd", target_os = "openbsd"))]
         EV_DISPATCH;
         #[cfg(target_os = "freebsd")]
@@ -104,18 +105,18 @@ libc_bitflags! {
         EV_ENABLE;
         EV_EOF;
         EV_ERROR;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EV_FLAG0;
         EV_FLAG1;
         #[cfg(target_os = "dragonfly")]
         EV_NODATA;
         EV_ONESHOT;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EV_OOBAND;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EV_POLL;
         #[cfg(any(target_os = "dragonfly", target_os = "freebsd",
-                  target_os = "ios", target_os = "macos",
+                  target_os = "ios", target_os = "tvos", target_os = "macos",
                   target_os = "netbsd", target_os = "openbsd"))]
         EV_RECEIPT;
     }
@@ -123,7 +124,7 @@ libc_bitflags! {
 
 libc_bitflags!(
     pub struct FilterFlag: u32 {
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_ABSOLUTE;
         NOTE_ATTRIB;
         NOTE_CHILD;
@@ -132,36 +133,36 @@ libc_bitflags!(
         NOTE_EOF;
         NOTE_EXEC;
         NOTE_EXIT;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_EXITSTATUS;
         NOTE_EXTEND;
         #[cfg(any(target_os = "macos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "freebsd",
                   target_os = "dragonfly"))]
         NOTE_FFAND;
         #[cfg(any(target_os = "macos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "freebsd",
                   target_os = "dragonfly"))]
         NOTE_FFCOPY;
         #[cfg(any(target_os = "macos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "freebsd",
                   target_os = "dragonfly"))]
         NOTE_FFCTRLMASK;
         #[cfg(any(target_os = "macos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "freebsd",
                   target_os = "dragonfly"))]
         NOTE_FFLAGSMASK;
         #[cfg(any(target_os = "macos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "freebsd",
                   target_os = "dragonfly"))]
         NOTE_FFNOP;
         #[cfg(any(target_os = "macos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "freebsd",
                   target_os = "dragonfly"))]
         NOTE_FFOR;
@@ -170,9 +171,9 @@ libc_bitflags!(
         NOTE_LOWAT;
         #[cfg(target_os = "freebsd")]
         NOTE_MSECONDS;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_NONE;
-        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "freebsd"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos", target_os = "freebsd"))]
         NOTE_NSECONDS;
         #[cfg(target_os = "dragonfly")]
         NOTE_OOB;
@@ -180,28 +181,28 @@ libc_bitflags!(
         NOTE_PDATAMASK;
         NOTE_RENAME;
         NOTE_REVOKE;
-        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "freebsd"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos", target_os = "freebsd"))]
         NOTE_SECONDS;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_SIGNAL;
         NOTE_TRACK;
         NOTE_TRACKERR;
         #[cfg(any(target_os = "macos",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "freebsd",
                   target_os = "dragonfly"))]
         NOTE_TRIGGER;
         #[cfg(target_os = "openbsd")]
         NOTE_TRUNCATE;
-        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "freebsd"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos", target_os = "freebsd"))]
         NOTE_USECONDS;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_VM_ERROR;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_VM_PRESSURE;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_VM_PRESSURE_SUDDEN_TERMINATE;
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         NOTE_VM_PRESSURE_TERMINATE;
         NOTE_WRITE;
     }
@@ -284,7 +285,7 @@ pub fn kevent(
 
 #[cfg(any(
     target_os = "macos",
-    target_os = "ios",
+    target_os = "ios", target_os = "tvos",
     target_os = "freebsd",
     target_os = "dragonfly",
     target_os = "openbsd"

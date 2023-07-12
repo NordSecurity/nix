@@ -89,7 +89,7 @@
     any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -100,7 +100,7 @@
     not(any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -122,7 +122,7 @@
     any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -133,7 +133,7 @@
     not(any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -155,7 +155,7 @@
     any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -166,7 +166,7 @@
     not(any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -189,7 +189,7 @@
     any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -200,7 +200,7 @@
     not(any(
         target_os = "freebsd",
         target_os = "dragonfly",
-        target_os = "ios",
+        target_os = "ios", target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd"
@@ -356,8 +356,8 @@ libc_enum! {
     ///
     /// B0 is special and will disable the port.
     #[cfg_attr(all(any(target_os = "haiku"), target_pointer_width = "64"), repr(u8))]
-    #[cfg_attr(all(any(target_os = "ios", target_os = "macos"), target_pointer_width = "64"), repr(u64))]
-    #[cfg_attr(not(all(any(target_os = "ios", target_os = "macos", target_os = "haiku"), target_pointer_width = "64")), repr(u32))]
+    #[cfg_attr(all(any(target_os = "ios", target_os = "tvos", target_os = "macos"), target_pointer_width = "64"), repr(u64))]
+    #[cfg_attr(not(all(any(target_os = "ios", target_os = "tvos", target_os = "macos", target_os = "haiku"), target_pointer_width = "64")), repr(u32))]
     #[non_exhaustive]
     pub enum BaudRate {
         B0,
@@ -466,7 +466,7 @@ libc_enum! {
 #[cfg(any(
     target_os = "freebsd",
     target_os = "dragonfly",
-    target_os = "ios",
+    target_os = "ios", target_os = "tvos",
     target_os = "macos",
     target_os = "netbsd",
     target_os = "openbsd"
@@ -665,56 +665,56 @@ libc_bitflags! {
         ONLRET as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         OFILL as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         OFDEL as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         NL0 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         NL1 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         CR0 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         CR1 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         CR2 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
@@ -722,21 +722,21 @@ libc_bitflags! {
         #[cfg(any(target_os = "android",
                   target_os = "freebsd",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         TAB0 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         TAB1 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
@@ -744,7 +744,7 @@ libc_bitflags! {
         #[cfg(any(target_os = "android",
                   target_os = "freebsd",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
@@ -754,49 +754,49 @@ libc_bitflags! {
         XTABS;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         BS0 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         BS1 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         VT0 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         VT1 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         FF0 as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         FF1 as tcflag_t;
         #[cfg(any(target_os = "freebsd",
                   target_os = "dragonfly",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd"))]
@@ -816,14 +816,14 @@ libc_bitflags! {
 
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         NLDLY as tcflag_t; // FIXME: Datatype needs to be corrected in libc for mac
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
@@ -831,28 +831,28 @@ libc_bitflags! {
         #[cfg(any(target_os = "android",
                   target_os = "freebsd",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         TABDLY as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         BSDLY as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         VTDLY as tcflag_t;
         #[cfg(any(target_os = "android",
                   target_os = "haiku",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
@@ -865,7 +865,7 @@ libc_bitflags! {
     pub struct ControlFlags: tcflag_t {
         #[cfg(any(target_os = "dragonfly",
                   target_os = "freebsd",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd"))]
@@ -960,7 +960,7 @@ libc_bitflags! {
         ICANON;
         #[cfg(any(target_os = "freebsd",
                   target_os = "dragonfly",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd"))]
@@ -976,7 +976,7 @@ libc_bitflags! {
         FLUSHO;
         #[cfg(any(target_os = "freebsd",
                   target_os = "dragonfly",
-                  target_os = "ios",
+                  target_os = "ios", target_os = "tvos",
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd"))]
@@ -992,7 +992,7 @@ libc_bitflags! {
 cfg_if! {
     if #[cfg(any(target_os = "freebsd",
                  target_os = "dragonfly",
-                 target_os = "ios",
+                 target_os = "ios", target_os = "tvos",
                  target_os = "macos",
                  target_os = "netbsd",
                  target_os = "openbsd"))] {

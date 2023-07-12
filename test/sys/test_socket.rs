@@ -1597,7 +1597,7 @@ pub fn test_unnamed_unixdomain_autobind() {
 }
 
 // Test creating and using named system control sockets
-#[cfg(any(target_os = "macos", target_os = "ios"))]
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
 #[test]
 pub fn test_syscontrol() {
     use nix::errno::Errno;
@@ -1627,6 +1627,7 @@ pub fn test_syscontrol() {
     target_os = "android",
     target_os = "freebsd",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "linux",
     target_os = "macos",
     target_os = "netbsd",
@@ -1661,6 +1662,7 @@ fn loopback_address(
 #[cfg(any(
     target_os = "android",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "linux",
     target_os = "macos",
     target_os = "netbsd",
@@ -1755,6 +1757,7 @@ pub fn test_recv_ipv4pktinfo() {
 #[cfg(any(
     target_os = "freebsd",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "netbsd",
     target_os = "openbsd",
@@ -2043,6 +2046,7 @@ pub fn test_recvif_ipv6() {
     target_os = "android",
     target_os = "freebsd",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "linux",
     target_os = "macos",
     target_os = "netbsd",

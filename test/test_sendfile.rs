@@ -8,7 +8,7 @@ use tempfile::tempfile;
 cfg_if! {
     if #[cfg(any(target_os = "android", target_os = "linux"))] {
         use nix::unistd::{close, pipe, read};
-    } else if #[cfg(any(target_os = "dragonfly", target_os = "freebsd", target_os = "ios", target_os = "macos"))] {
+    } else if #[cfg(any(target_os = "dragonfly", target_os = "freebsd", target_os = "ios", target_os = "tvos", target_os = "macos"))] {
         use std::net::Shutdown;
         use std::os::unix::net::UnixStream;
     }
@@ -158,7 +158,7 @@ fn test_sendfile_dragonfly() {
     assert_eq!(expected_string, read_string);
 }
 
-#[cfg(any(target_os = "ios", target_os = "macos"))]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
 #[test]
 fn test_sendfile_darwin() {
     // Declare the content
