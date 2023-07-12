@@ -230,6 +230,7 @@ impl Entry {
                          target_os = "haiku",
                          target_os = "illumos",
                          target_os = "ios",
+                         target_os = "tvos",
                          target_os = "l4re",
                          target_os = "linux",
                          target_os = "macos",

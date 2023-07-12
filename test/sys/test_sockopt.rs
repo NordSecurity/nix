@@ -7,7 +7,7 @@ use nix::sys::socket::{
 use rand::{thread_rng, Rng};
 
 // NB: FreeBSD supports LOCAL_PEERCRED for SOCK_SEQPACKET, but OSX does not.
-#[cfg(any(target_os = "dragonfly", target_os = "freebsd",))]
+#[cfg(any(target_os = "dragonfly", target_os = "freebsd"))]
 #[test]
 pub fn test_local_peercred_seqpacket() {
     use nix::{
@@ -32,7 +32,8 @@ pub fn test_local_peercred_seqpacket() {
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "macos",
-    target_os = "ios"
+    target_os = "ios",
+    target_os = "tvos"
 ))]
 #[test]
 pub fn test_local_peercred_stream() {
@@ -166,7 +167,7 @@ fn test_so_type() {
 
 /// getsockopt(_, sockopt::SockType) should gracefully handle unknown socket
 /// types.  Regression test for https://github.com/nix-rust/nix/issues/1819
-#[cfg(any(target_os = "android", target_os = "linux",))]
+#[cfg(any(target_os = "android", target_os = "linux"))]
 #[test]
 fn test_so_type_unknown() {
     use nix::errno::Errno;
@@ -314,7 +315,7 @@ fn test_ttl_opts() {
 }
 
 #[test]
-#[cfg(any(target_os = "ios", target_os = "macos"))]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
 fn test_dontfrag_opts() {
     let fd4 = socket(
         AddressFamily::Inet,
@@ -347,6 +348,7 @@ fn test_dontfrag_opts() {
 #[cfg(any(
     target_os = "android",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "linux",
     target_os = "macos",
 ))]

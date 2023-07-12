@@ -128,6 +128,7 @@ fn test_mkfifo_directory() {
 #[cfg(not(any(
     target_os = "macos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "android",
     target_os = "redox",
     target_os = "haiku"
@@ -149,6 +150,7 @@ fn test_mkfifoat_none() {
 #[cfg(not(any(
     target_os = "macos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "android",
     target_os = "redox",
     target_os = "haiku"
@@ -172,6 +174,7 @@ fn test_mkfifoat() {
 #[cfg(not(any(
     target_os = "macos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "android",
     target_os = "redox",
     target_os = "haiku"
@@ -188,6 +191,7 @@ fn test_mkfifoat_directory_none() {
 #[cfg(not(any(
     target_os = "macos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "android",
     target_os = "redox",
     target_os = "haiku"
@@ -235,6 +239,7 @@ mod linux_android {
 // `getgroups()` and `setgroups()` do not behave as expected on Apple platforms
 #[cfg(not(any(
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "redox",
     target_os = "fuchsia",
@@ -264,6 +269,7 @@ fn test_setgroups() {
 // `getgroups()` and `setgroups()` do not behave as expected on Apple platforms
 #[cfg(not(any(
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "redox",
     target_os = "fuchsia",
@@ -413,6 +419,7 @@ cfg_if! {
         execve_test_factory!(test_fexecve, fexecve, File::open("/bin/sh").unwrap().into_raw_fd());
     } else if #[cfg(any(target_os = "illumos",
                         target_os = "ios",
+                        target_os = "tvos",
                         target_os = "macos",
                         target_os = "netbsd",
                         target_os = "openbsd",
@@ -999,6 +1006,7 @@ fn test_linkat_newdirfd_none() {
 #[test]
 #[cfg(not(any(
     target_os = "ios",
+    target_os = "tvos",
     target_os = "macos",
     target_os = "redox",
     target_os = "haiku"
@@ -1274,6 +1282,7 @@ fn test_ttyname_invalid_fd() {
 #[cfg(any(
     target_os = "macos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "freebsd",
     target_os = "openbsd",
     target_os = "netbsd",
@@ -1299,6 +1308,7 @@ fn test_getpeereid() {
 #[cfg(any(
     target_os = "macos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "freebsd",
     target_os = "openbsd",
     target_os = "netbsd",

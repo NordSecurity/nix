@@ -303,6 +303,7 @@ impl Statfs {
         target_os = "openbsd",
         target_os = "dragonfly",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos"
     )))]
     #[cfg_attr(docsrs, doc(cfg(all())))]
@@ -319,7 +320,7 @@ impl Statfs {
     }
 
     /// Optimal transfer block size
-    #[cfg(any(target_os = "ios", target_os = "macos"))]
+    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
     #[cfg_attr(docsrs, doc(cfg(all())))]
     pub fn optimal_transfer_size(&self) -> i32 {
         self.0.f_iosize
@@ -385,7 +386,7 @@ impl Statfs {
     }
 
     /// Size of a block
-    #[cfg(any(target_os = "ios", target_os = "macos", target_os = "openbsd"))]
+    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos", target_os = "openbsd"))]
     #[cfg_attr(docsrs, doc(cfg(all())))]
     pub fn block_size(&self) -> u32 {
         self.0.f_bsize
@@ -529,6 +530,7 @@ impl Statfs {
     /// Total data blocks in filesystem
     #[cfg(any(
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "android",
         target_os = "freebsd",
@@ -558,6 +560,7 @@ impl Statfs {
     /// Free blocks in filesystem
     #[cfg(any(
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "android",
         target_os = "freebsd",
@@ -587,6 +590,7 @@ impl Statfs {
     /// Free blocks available to unprivileged user
     #[cfg(any(
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "android",
         target_os = "fuchsia",
@@ -621,6 +625,7 @@ impl Statfs {
     /// Total file nodes in filesystem
     #[cfg(any(
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "android",
         target_os = "freebsd",
@@ -650,6 +655,7 @@ impl Statfs {
     /// Free file nodes in filesystem
     #[cfg(any(
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "android",
         target_os = "fuchsia",

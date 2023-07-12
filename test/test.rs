@@ -45,6 +45,7 @@ mod test_sched;
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "linux",
     target_os = "macos"
 ))]

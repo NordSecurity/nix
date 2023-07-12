@@ -57,6 +57,7 @@ impl ClockId {
     #[cfg(not(any(
         target_os = "macos",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "redox",
         target_os = "hermit",
     )))]
@@ -119,6 +120,7 @@ impl ClockId {
         target_os = "fuchsia",
         target_os = "macos",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "freebsd",
         target_os = "dragonfly",
         target_os = "redox",
@@ -179,6 +181,7 @@ impl ClockId {
         target_os = "emscripten",
         target_os = "fuchsia",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "freebsd",
         target_os = "dragonfly",
@@ -249,6 +252,7 @@ pub fn clock_gettime(clock_id: ClockId) -> Result<TimeSpec> {
 #[cfg(not(any(
     target_os = "macos",
     target_os = "ios",
+    target_os = "tvos",
     target_os = "redox",
     target_os = "hermit",
 )))]

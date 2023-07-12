@@ -67,6 +67,7 @@ cfg_if! {
     if #[cfg(any(target_os = "dragonfly",
                  target_os = "freebsd",
                  target_os = "ios",
+                 target_os = "tvos",
                  target_os = "macos"))] {
         use std::io::IoSlice;
 
@@ -228,7 +229,7 @@ cfg_if! {
             };
             (Errno::result(return_code).and(Ok(())), bytes_sent)
         }
-    } else if #[cfg(any(target_os = "ios", target_os = "macos"))] {
+    } else if #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))] {
         /// Read bytes from `in_fd` starting at `offset` and write up to `count` bytes to
         /// `out_sock`.
         ///

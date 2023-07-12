@@ -158,7 +158,7 @@ fn test_sendfile_dragonfly() {
     assert_eq!(expected_string, read_string);
 }
 
-#[cfg(any(target_os = "ios", target_os = "macos"))]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
 #[test]
 fn test_sendfile_darwin() {
     // Declare the content

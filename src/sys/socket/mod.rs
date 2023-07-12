@@ -63,7 +63,7 @@ pub use self::addr::{
 pub use crate::sys::socket::addr::alg::AlgAddr;
 #[cfg(any(target_os = "android", target_os = "linux"))]
 pub use crate::sys::socket::addr::netlink::NetlinkAddr;
-#[cfg(any(target_os = "ios", target_os = "macos"))]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
 #[cfg(feature = "ioctl")]
 pub use crate::sys::socket::addr::sys_control::SysControlAddr;
 #[cfg(any(target_os = "android", target_os = "linux"))]
@@ -140,12 +140,12 @@ pub enum SockProtocol {
     Raw = libc::IPPROTO_RAW,
     /// Allows applications and other KEXTs to be notified when certain kernel events occur
     /// ([ref](https://developer.apple.com/library/content/documentation/Darwin/Conceptual/NKEConceptual/control/control.html))
-    #[cfg(any(target_os = "ios", target_os = "macos"))]
+    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
     #[cfg_attr(docsrs, doc(cfg(all())))]
     KextEvent = libc::SYSPROTO_EVENT,
     /// Allows applications to configure and control a KEXT
     /// ([ref](https://developer.apple.com/library/content/documentation/Darwin/Conceptual/NKEConceptual/control/control.html))
-    #[cfg(any(target_os = "ios", target_os = "macos"))]
+    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
     #[cfg_attr(docsrs, doc(cfg(all())))]
     KextControl = libc::SYSPROTO_CONTROL,
     /// Receives routing and link updates and may be used to modify the routing tables (both IPv4 and IPv6), IP addresses, link
@@ -483,7 +483,8 @@ cfg_if! {
                 target_os = "dragonfly",
                 target_os = "freebsd",
                 target_os = "macos",
-                target_os = "ios"
+                target_os = "ios",
+                target_os = "tvos"
         ))] {
         /// Return type of [`LocalPeerCred`](crate::sys::socket::sockopt::LocalPeerCred)
         #[repr(transparent)]
@@ -745,6 +746,7 @@ pub enum ControlMessageOwned {
     #[cfg(any(
         target_os = "android",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "linux",
         target_os = "macos",
         target_os = "netbsd",
@@ -757,6 +759,7 @@ pub enum ControlMessageOwned {
         target_os = "dragonfly",
         target_os = "freebsd",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "linux",
         target_os = "macos",
         target_os = "openbsd",
@@ -768,6 +771,7 @@ pub enum ControlMessageOwned {
     #[cfg(any(
         target_os = "freebsd",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd",
@@ -778,6 +782,7 @@ pub enum ControlMessageOwned {
     #[cfg(any(
         target_os = "freebsd",
         target_os = "ios",
+        target_os = "tvos",
         target_os = "macos",
         target_os = "netbsd",
         target_os = "openbsd",
@@ -910,6 +915,7 @@ impl ControlMessageOwned {
                 target_os = "android",
                 target_os = "freebsd",
                 target_os = "ios",
+                target_os = "tvos",
                 target_os = "linux",
                 target_os = "macos"
             ))]
@@ -921,6 +927,7 @@ impl ControlMessageOwned {
             #[cfg(any(
                 target_os = "android",
                 target_os = "ios",
+                target_os = "tvos",
                 target_os = "linux",
                 target_os = "macos",
                 target_os = "netbsd",
@@ -933,6 +940,7 @@ impl ControlMessageOwned {
             #[cfg(any(
                 target_os = "freebsd",
                 target_os = "ios",
+                target_os = "tvos",
                 target_os = "macos",
                 target_os = "netbsd",
                 target_os = "openbsd",
@@ -945,6 +953,7 @@ impl ControlMessageOwned {
             #[cfg(any(
                 target_os = "freebsd",
                 target_os = "ios",
+                target_os = "tvos",
                 target_os = "macos",
                 target_os = "netbsd",
                 target_os = "openbsd",
@@ -1121,7 +1130,8 @@ pub enum ControlMessage<'a> {
               target_os = "macos",
               target_os = "netbsd",
               target_os = "android",
-              target_os = "ios",))]
+              target_os = "ios",
+              target_os = "tvos"))]
     #[cfg(feature = "net")]
     #[cfg_attr(docsrs, doc(cfg(feature = "net")))]
     Ipv4PacketInfo(&'a libc::in_pktinfo),
@@ -1135,7 +1145,8 @@ pub enum ControlMessage<'a> {
               target_os = "netbsd",
               target_os = "freebsd",
               target_os = "android",
-              target_os = "ios",))]
+              target_os = "ios",
+              target_os = "tvos"))]
     #[cfg(feature = "net")]
     #[cfg_attr(docsrs, doc(cfg(feature = "net")))]
     Ipv6PacketInfo(&'a libc::in6_pktinfo),
@@ -1252,12 +1263,12 @@ impl<'a> ControlMessage<'a> {
             },
             #[cfg(any(target_os = "linux", target_os = "macos",
                       target_os = "netbsd", target_os = "android",
-                      target_os = "ios",))]
+                      target_os = "ios", target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv4PacketInfo(info) => info as *const _ as *const u8,
             #[cfg(any(target_os = "linux", target_os = "macos",
                       target_os = "netbsd", target_os = "freebsd",
-                      target_os = "android", target_os = "ios",))]
+                      target_os = "android", target_os = "ios", target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv6PacketInfo(info) => info as *const _ as *const u8,
             #[cfg(any(target_os = "netbsd", target_os = "freebsd",
@@ -1315,12 +1326,12 @@ impl<'a> ControlMessage<'a> {
             },
             #[cfg(any(target_os = "linux", target_os = "macos",
               target_os = "netbsd", target_os = "android",
-              target_os = "ios",))]
+              target_os = "ios", target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv4PacketInfo(info) => mem::size_of_val(info),
             #[cfg(any(target_os = "linux", target_os = "macos",
               target_os = "netbsd", target_os = "freebsd",
-              target_os = "android", target_os = "ios",))]
+              target_os = "android", target_os = "ios", target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv6PacketInfo(info) => mem::size_of_val(info),
             #[cfg(any(target_os = "netbsd", target_os = "freebsd",
@@ -1354,12 +1365,12 @@ impl<'a> ControlMessage<'a> {
             ControlMessage::UdpGsoSegments(_) => libc::SOL_UDP,
             #[cfg(any(target_os = "linux", target_os = "macos",
                       target_os = "netbsd", target_os = "android",
-                      target_os = "ios",))]
+                      target_os = "ios", target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv4PacketInfo(_) => libc::IPPROTO_IP,
             #[cfg(any(target_os = "linux", target_os = "macos",
               target_os = "netbsd", target_os = "freebsd",
-              target_os = "android", target_os = "ios",))]
+              target_os = "android", target_os = "ios", target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv6PacketInfo(_) => libc::IPPROTO_IPV6,
             #[cfg(any(target_os = "netbsd", target_os = "freebsd",
@@ -1400,12 +1411,13 @@ impl<'a> ControlMessage<'a> {
             },
             #[cfg(any(target_os = "linux", target_os = "macos",
                       target_os = "netbsd", target_os = "android",
-                      target_os = "ios",))]
+                      target_os = "ios", target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv4PacketInfo(_) => libc::IP_PKTINFO,
             #[cfg(any(target_os = "linux", target_os = "macos",
                       target_os = "netbsd", target_os = "freebsd",
-                      target_os = "android", target_os = "ios",))]
+                      target_os = "android", target_os = "ios", 
+                      target_os = "tvos"))]
             #[cfg(feature = "net")]
             ControlMessage::Ipv6PacketInfo(_) => libc::IPV6_PKTINFO,
             #[cfg(any(target_os = "netbsd", target_os = "freebsd",

@@ -78,6 +78,7 @@ libc_bitflags!(
         /// Implicitly follow each `write()` with an `fdatasync()`.
         #[cfg(any(target_os = "android",
                   target_os = "ios",
+                  target_os = "tvos",
                   target_os = "linux",
                   target_os = "macos",
                   target_os = "netbsd",
@@ -94,6 +95,7 @@ libc_bitflags!(
         #[cfg(any(target_os = "dragonfly",
                   target_os = "freebsd",
                   target_os = "ios",
+                  target_os = "tvos",
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd",
@@ -104,6 +106,7 @@ libc_bitflags!(
         #[cfg(any(target_os = "dragonfly",
                   target_os = "freebsd",
                   target_os = "ios",
+                  target_os = "tvos",
                   all(target_os = "linux", not(target_env = "musl")),
                   target_os = "macos",
                   target_os = "netbsd",
@@ -161,6 +164,7 @@ libc_bitflags!(
         #[cfg(any(target_os = "dragonfly",
                   target_os = "freebsd",
                   target_os = "ios",
+                  target_os = "tvos",
                   target_os = "macos",
                   target_os = "netbsd",
                   target_os = "openbsd",
@@ -237,7 +241,7 @@ pub fn renameat<P1: ?Sized + NixPath, P2: ?Sized + NixPath>(
 }
 }
 
-#[cfg(all(target_os = "linux", target_env = "gnu",))]
+#[cfg(all(target_os = "linux", target_env = "gnu"))]
 #[cfg(feature = "fs")]
 libc_bitflags! {
     #[cfg_attr(docsrs, doc(cfg(feature = "fs")))]
@@ -431,7 +435,7 @@ pub enum FcntlArg<'a> {
     F_ADD_SEALS(SealFlag),
     #[cfg(any(target_os = "android", target_os = "linux", target_os = "freebsd"))]
     F_GET_SEALS,
-    #[cfg(any(target_os = "macos", target_os = "ios"))]
+    #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
     F_FULLFSYNC,
     #[cfg(any(target_os = "linux", target_os = "android"))]
     F_GETPIPE_SZ,
@@ -479,7 +483,7 @@ pub fn fcntl(fd: RawFd, arg: FcntlArg) -> Result<c_int> {
             F_ADD_SEALS(flag) => libc::fcntl(fd, libc::F_ADD_SEALS, flag.bits()),
             #[cfg(any(target_os = "android", target_os = "linux", target_os = "freebsd"))]
             F_GET_SEALS => libc::fcntl(fd, libc::F_GET_SEALS),
-            #[cfg(any(target_os = "macos", target_os = "ios"))]
+            #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
             F_FULLFSYNC => libc::fcntl(fd, libc::F_FULLFSYNC),
             #[cfg(any(target_os = "linux", target_os = "android"))]
             F_GETPIPE_SZ => libc::fcntl(fd, libc::F_GETPIPE_SZ),

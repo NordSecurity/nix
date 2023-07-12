@@ -169,11 +169,11 @@ libc_bitflags! {
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MAP_STACK;
         /// Pages in this mapping are not retained in the kernel's memory cache.
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MAP_NOCACHE;
         /// Allows the W/X bit on the page, it's necessary on aarch64 architecture.
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MAP_JIT;
         /// Allows to use large pages, underlying alignment based on size.
@@ -312,19 +312,19 @@ libc_enum! {
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MADV_SETMAP,
         /// Indicates that the application will not need the data in the given range.
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MADV_ZERO_WIRED_PAGES,
         /// Pages can be reused (by anyone).
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MADV_FREE_REUSABLE,
         /// Caller wants to reuse those pages.
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MADV_FREE_REUSE,
         // Darwin doesn't document this flag's behavior.
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         #[allow(missing_docs)]
         MADV_CAN_REUSE,
@@ -339,11 +339,11 @@ libc_bitflags! {
         /// Invalidate all cached data.
         MS_INVALIDATE;
         /// Invalidate pages, but leave them mapped.
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MS_KILLPAGES;
         /// Deactivate pages, but leave them mapped.
-        #[cfg(any(target_os = "ios", target_os = "macos"))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "macos"))]
         #[cfg_attr(docsrs, doc(cfg(all())))]
         MS_DEACTIVATE;
         /// Perform an update and wait for it to complete.
@@ -571,11 +571,11 @@ pub fn shm_open<P>(
     where P: ?Sized + NixPath
 {
     let ret = name.with_nix_path(|cstr| {
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         unsafe {
             libc::shm_open(cstr.as_ptr(), flag.bits(), mode.bits() as libc::c_uint)
         }
-        #[cfg(not(any(target_os = "macos", target_os = "ios")))]
+        #[cfg(not(any(target_os = "macos", target_os = "ios", target_os = "tvos")))]
         unsafe {
             libc::shm_open(cstr.as_ptr(), flag.bits(), mode.bits() as libc::mode_t)
         }

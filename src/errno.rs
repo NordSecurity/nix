@@ -9,6 +9,7 @@ pub use self::consts::*;
 cfg_if! {
     if #[cfg(any(target_os = "freebsd",
                  target_os = "ios",
+                 target_os = "tvos",
                  target_os = "macos"))] {
         unsafe fn errno_location() -> *mut c_int {
             libc::__error()
@@ -30,7 +31,7 @@ cfg_if! {
         unsafe fn errno_location() -> *mut c_int {
             libc::___errno()
         }
-    } else if #[cfg(any(target_os = "haiku",))] {
+    } else if #[cfg(any(target_os = "haiku"))] {
         unsafe fn errno_location() -> *mut c_int {
             libc::_errnop()
         }
@@ -779,6 +780,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -789,6 +791,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox",
@@ -802,6 +805,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "netbsd",
             target_os = "redox",
             target_os = "haiku"
@@ -813,6 +817,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "haiku"
@@ -824,6 +829,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox",
@@ -836,6 +842,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox",
@@ -848,6 +855,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd"
         ))]
         ENOTRECOVERABLE => "State not recoverable",
@@ -857,6 +865,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd"
         ))]
         EOWNERDEAD => "Previous owner died",
@@ -866,6 +875,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "illumos",
@@ -879,6 +889,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -889,6 +900,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox"
@@ -900,6 +912,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox",
@@ -914,6 +927,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox",
@@ -928,6 +942,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox"
@@ -939,6 +954,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -949,6 +965,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -959,6 +976,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -969,6 +987,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -979,6 +998,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -989,6 +1009,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -999,6 +1020,7 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd"
         ))]
@@ -1009,33 +1031,35 @@ fn desc(errno: Errno) -> &'static str {
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "openbsd",
             target_os = "netbsd",
             target_os = "redox"
         ))]
         ECANCELED => "Operation canceled",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EPWROFF => "Device power is off",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EDEVERR => "Device error, e.g. paper out",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EBADEXEC => "Bad executable",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EBADARCH => "Bad CPU type in executable",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         ESHLIBVERS => "Shared library version mismatch",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EBADMACHO => "Malformed Macho file",
 
         #[cfg(any(
             target_os = "macos",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "netbsd",
             target_os = "haiku"
         ))]
@@ -1044,6 +1068,7 @@ fn desc(errno: Errno) -> &'static str {
         #[cfg(any(
             target_os = "macos",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "netbsd",
             target_os = "redox"
         ))]
@@ -1052,6 +1077,7 @@ fn desc(errno: Errno) -> &'static str {
         #[cfg(any(
             target_os = "macos",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "netbsd",
             target_os = "haiku"
         ))]
@@ -1060,6 +1086,7 @@ fn desc(errno: Errno) -> &'static str {
         #[cfg(any(
             target_os = "macos",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "netbsd",
             target_os = "redox"
         ))]
@@ -1068,6 +1095,7 @@ fn desc(errno: Errno) -> &'static str {
         #[cfg(any(
             target_os = "macos",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "netbsd",
             target_os = "redox"
         ))]
@@ -1076,6 +1104,7 @@ fn desc(errno: Errno) -> &'static str {
         #[cfg(any(
             target_os = "macos",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "netbsd",
             target_os = "redox"
         ))]
@@ -1084,15 +1113,16 @@ fn desc(errno: Errno) -> &'static str {
         #[cfg(any(
             target_os = "macos",
             target_os = "ios",
+            target_os = "tvos",
             target_os = "illumos",
             target_os = "solaris"
         ))]
         EOPNOTSUPP => "Operation not supported on socket",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         ENOPOLICY => "No such policy registered",
 
-        #[cfg(any(target_os = "macos", target_os = "ios"))]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         EQFULL => "Interface output queue is full",
 
         #[cfg(target_os = "openbsd")]
@@ -1405,7 +1435,7 @@ mod consts {
     }
 }
 
-#[cfg(any(target_os = "macos", target_os = "ios"))]
+#[cfg(any(target_os = "macos", target_os = "tvos", target_os = "ios"))]
 mod consts {
     #[derive(Clone, Copy, Debug, Eq, PartialEq)]
     #[repr(i32)]
